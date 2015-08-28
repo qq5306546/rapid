@@ -15,7 +15,7 @@
     <mvc:default-servlet-handler />
     
     <!-- 扫描controller（controller层注入） -->
-   	<context:component-scan base-package="com.rapid.web.test.controller"/>
+   	<context:component-scan base-package="com.rapid.module.*.controller"/>
    	
    	<mvc:annotation-driven >
 	    <!-- 消息转换器 -->

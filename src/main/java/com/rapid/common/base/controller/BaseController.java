@@ -1,4 +1,4 @@
-package com.rapid.common.base.spring.mvc;
+package com.rapid.common.base.controller;
 
 import java.util.Map;
 

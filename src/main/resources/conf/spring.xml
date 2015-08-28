@@ -13,6 +13,12 @@
     <!-- 引入jdbc配置文件 -->
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
     
+    <util:properties id="properties" location="classpath:conf/config.properties"/>
+    
+    <bean id="systemGlobal" class="com.rapid.common.plugin.config.SystemGlobal">
+    	<property name="properties" ref="properties" />
+    </bean>
+    
     <!-- 扫描文件（自动将servicec层注入） -->
-    <context:component-scan base-package="com.rapid.web.test.service"/>
+    <context:component-scan base-package="com.rapid.module.*.service"/>
 </beans>
