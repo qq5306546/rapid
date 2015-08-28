@@ -23,9 +23,10 @@
 	      <bean class="org.springframework.http.converter.StringHttpMessageConverter">
 	        <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
 	      </bean>
+	      <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter" />
 	    </mvc:message-converters>
     </mvc:annotation-driven>
-   
+    
     <!-- FreeMarker环境配置 -->
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<!-- freemarker模板位置 -->
