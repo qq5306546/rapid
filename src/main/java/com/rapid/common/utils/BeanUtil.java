@@ -20,8 +20,10 @@ public class BeanUtil {
 
 	/**
 	 * 获取接口的泛型类型，如果不存在则返回null
-	 * @param clazz
+	 * @param 
+	 * 		clazz
 	 * @return
+	 * 		
 	 */
 	public static Class<?> getGenericClass(Class<?> clazz) {
 		Type t = clazz.getGenericSuperclass();
@@ -34,8 +36,10 @@ public class BeanUtil {
 	
 	/**
      * 将一个 JavaBean 对象转化为一个  Map
-     * @param bean 要转化的JavaBean 对象
-     * @return 转化出来的  Map 对象
+     * @param 
+     * 		bean 要转化的JavaBean 对象
+     * @return 
+     * 		转化出来的  Map 对象
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Map beanToMap(Object bean) {
@@ -67,9 +71,12 @@ public class BeanUtil {
     
     /**
      * 将一个 Map 对象转化为一个 JavaBean
-     * @param type 要转化的类型
-     * @param map 包含属性值的 map
-     * @return 转化出来的 JavaBean 对象
+     * @param 
+     * 		type 要转化的类型
+     * @param 
+     * 		map 包含属性值的 map
+     * @return 
+     * 		转化出来的 JavaBean 对象
      */
     @SuppressWarnings("rawtypes")
 	public static Object mapToBean(Class type, Map map) {

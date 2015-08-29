@@ -13,4 +13,5 @@ rapid/
     	│	├── exception/				全局异常
     	│	├── plugin/
     	│	└── utils/					工具包
+    	│
 		└──	module/

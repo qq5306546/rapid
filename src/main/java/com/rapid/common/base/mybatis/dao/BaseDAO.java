@@ -98,8 +98,10 @@ public interface BaseDAO<T extends BaseModel, ID> {
 	/**
 	 * 新增一条数据库记录
 	 * 实体字段为空时，则不修改为空字段
-	 * @param model
+	 * @param 
+	 * 		model 新增的对象
 	 * @return
+	 * 		int 新增成功数量
 	 */
 	public int insertSelective(T model);
     

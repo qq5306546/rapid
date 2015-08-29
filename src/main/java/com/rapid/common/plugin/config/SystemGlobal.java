@@ -60,6 +60,7 @@ public class SystemGlobal {
 	/**
 	 * Spring获得上下文
 	 * @return
+	 * 		spring ApplicationContext对象
 	 */
 	private ApplicationContext getContext() {
 		return ContextLoader.getCurrentWebApplicationContext();

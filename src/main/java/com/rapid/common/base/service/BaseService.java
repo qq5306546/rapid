@@ -69,7 +69,7 @@ public interface BaseService<T, ID> {
 	 * 底层调用selectCount(Map params)方法
 	 * model对象通过BeanUtil转换成Map对象
 	 * @param 
-	 * 		params Map类型封装参数(K 字段名, V 字段值)
+	 * 		model 查询的实体条件
 	 * @return 
 	 * 		List<T> 泛型的集合对象
 	 */
@@ -137,7 +137,7 @@ public interface BaseService<T, ID> {
 	 * 底层调用delete(Map params)方法
 	 * model对象通过BeanUtil转换成Map对象
 	 * @param 
-	 * 		params Map类型封装参数(K 字段名, V 字段值)
+	 * 		model 被删除的对象
 	 * @return 
 	 * 		int 删除行总数
 	 */
@@ -155,8 +155,10 @@ public interface BaseService<T, ID> {
 	/**
 	 * 新增一条数据库记录
 	 * 实体字段为空时，则不修改为空字段
-	 * @param model
+	 * @param 
+	 * 		model 新增的对象
 	 * @return
+	 * 		int 新增成功数量
 	 */
 	public int insertSelective(T model);
      
