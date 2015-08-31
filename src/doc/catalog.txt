@@ -1,17 +1,27 @@
 工程结构说明文件
 rapid/
-└── com/
-    └── rapid/
-  		├── common/						框架基础代码文件夹
-    	│	├── base/					controller,service,dao,model基类的封装
-		│	│	├── controller/			springMvc中的控制器封装
-		│	│	├── mybatis/			mybatis封装
-		│	│	│	├── annotation/
-		│	│	│	├── dao/
-		│	│	│	└── model/
-		│	│	└── service/            servcie封装
-    	│	├── exception/				全局异常
-    	│	├── plugin/
-    	│	└── utils/					工具包
-    	│
-		└──	module/
+└── com.rapid.common/
+	├── base/
+	│	├── controller/
+	│	│	└──	BaseController.java
+	│	├── mybatis/
+	│	│	├── annotation/
+	│	│	│	└── MyBatisMapper.java
+	│	│	├── dao/
+	│	│	│	└── BaseDAO.java
+	│	│	├── model/
+	│	│	│	└── BaseModel.java
+	│	│	└── service/
+	│	│		├── BaseService.java
+	│	│		└── BaseServiceImpl.java
+	│	├── exception/
+	│	│	└── BaseException.java
+	│	├── plugin/
+	│	│	└── config/
+	│	│	│	├── Config.java
+	│	│	│	└── SystemGlobal.java
+	│	│	└── InitListener.java
+	│	└── utils/
+	│		└─ BeanUtil.java
+	│
+	└──	module/
