@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -14,9 +15,9 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class BaseController {
 	
-	private static final String KEY_SUCCESS = "succ";   // 返回json对象结果的key
-	private static final String KEY_MESSAGE = "msg";    // 返回json对象消息的key
-	private static final String KEY_DATA = "data";      // 返回json对象的key
+	private static final String KEY_SUCCESS = "succ";   	// 返回json对象结果的key
+	private static final String KEY_MESSAGE = "msg";    	// 返回json对象消息的key
+	private static final String KEY_DATA = "data";      	// 返回json对象的key
 	protected final Logger logger = Logger.getLogger(getClass());
 	private final JSONObject json = new JSONObject();
 	
@@ -88,6 +89,34 @@ public class BaseController {
 	}
 	
 	/**
+	 * 重定向到指定url
+	 * @param 
+	 *		path 重定向地址
+	 * @return
+	 * 		spring ModelAndView
+	 */
+	protected ModelAndView redirect(String path) {
+		RedirectView view = new RedirectView(path);
+		return new ModelAndView(view);
+	}
+	
+	/**
+	 * 重定向到指定url,并通过get方式传递参数
+	 * @param 
+	 * 		path 重定向地址
+	 * @param 
+	 * 		attributeName 参数名
+	 * @param 
+	 * 		attributeValue 参数值
+	 * @return
+	 * 		spring ModelAndView
+	 */
+	protected ModelAndView redirect(String path,  String attributeName, Object attributeValue) {
+		RedirectView view = new RedirectView(path);
+		return new ModelAndView(view).addObject(attributeName, attributeValue);
+	}
+	
+	/**
 	 * 返回succ为true的json格式<br>
 	 * Controller方法注解@ResponseBody,返回Object
 	 * @return
@@ -96,6 +125,9 @@ public class BaseController {
 	protected Object renderJsonSucc() {
 		json.clear();
 		json.put(KEY_SUCCESS, true);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	
@@ -111,6 +143,9 @@ public class BaseController {
 		json.clear();
 		json.put(KEY_SUCCESS, true);
 		json.put(KEY_DATA, value);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	
@@ -129,6 +164,9 @@ public class BaseController {
 		json.put(KEY_SUCCESS, true);
 		json.put(KEY_MESSAGE, msg);
 		json.put(KEY_DATA, value);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	
@@ -141,6 +179,9 @@ public class BaseController {
 	protected Object renderJsonError() {
 		json.clear();
 		json.put(KEY_SUCCESS, false);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	
@@ -156,6 +197,9 @@ public class BaseController {
 		json.clear();
 		json.put(KEY_SUCCESS, false);
 		json.put(KEY_DATA, value);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	
@@ -174,6 +218,9 @@ public class BaseController {
 		json.put(KEY_SUCCESS, false);
 		json.put(KEY_MESSAGE, msg);
 		json.put(KEY_DATA, value);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	
@@ -190,6 +237,9 @@ public class BaseController {
 	protected Object renderJson(String key, Object value) {
 		json.clear();
 		json.put(key, value);
+		logger.debug(String.format("\n--------------------------------------------------------------------------------------------\n"
+				+ "return json %s \n"
+				+ "--------------------------------------------------------------------------------------------", json.toJSONString()));
 		return json;
 	}
 	

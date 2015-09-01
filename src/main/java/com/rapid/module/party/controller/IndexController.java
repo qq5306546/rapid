@@ -40,4 +40,8 @@ public class IndexController extends BaseController {
 		return renderJsonSucc();
 	}
 	
+	@RequestMapping("/redirect")
+	public ModelAndView redirectTest() {
+		return redirect("http://www.baidu.com", "1111", "222");
+	}
 }
