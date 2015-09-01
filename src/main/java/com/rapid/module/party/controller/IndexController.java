@@ -1,13 +1,17 @@
 package com.rapid.module.party.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.rapid.common.base.controller.BaseController;
-import com.rapid.common.plugin.config.Config;
 import com.rapid.common.plugin.config.SystemGlobal;
 
 @Controller
@@ -18,18 +22,22 @@ public class IndexController extends BaseController {
 	private SystemGlobal systemGlobal;
 	
 	@RequestMapping("/index")
-	@ResponseBody
-	public String index() {
-		return "hello 你好" + systemGlobal.getProperty(Config.CONFIG_FILE_UPLOAD);
+	public ModelAndView index() {
+		Map<String, Object> test = new HashMap<String, Object>();
+		test.put("aa", "aa");
+		test.put("bb", "bb");
+		
+		List<String> list = new ArrayList<String>();
+		list.add("aa");
+		list.add("bb");
+		
+ 		return render("party/index", "test", test);
 	}
 
 	@RequestMapping("/test")
 	@ResponseBody
 	public Object test() {
-		JSONObject json = new JSONObject();
-		json.put("11", "22222");
-        
-		return json;
+		return renderJsonSucc();
 	}
 	
 }
