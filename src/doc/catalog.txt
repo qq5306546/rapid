@@ -22,6 +22,9 @@ rapid/
 	│	│	│	└── SystemGlobal.java
 	│	│	└── InitListener.java
 	│	└── utils/
+	│		├── encrypt/
+	│		│	├──MD5Util.java
+	│		│	└──SHA1Util.java
 	│		└─ BeanUtil.java
 	│
 	└──	module/
