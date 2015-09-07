@@ -7,6 +7,11 @@ rapid/
 	│	├── mybatis/
 	│	│	├── annotation/
 	│	│	│	└── MyBatisMapper.java┈┈┈┈┈┈spring-mybatis扫描指定的DAO文件
+	│	│	├── autobuilder/┈┈┈┈┈┈mybatis自动生成xml,model实体包
+	│	│	│	├── AutoBuilder.java
+	│	│	│	├── ColumnConvert.java
+	│	│	│	├── Entity.java
+	│	│	│	└── Field.java
 	│	│	├── dao/
 	│	│	│	└── BaseDAO.java┈┈┈┈┈┈DAO基类，封装了增、删、改、查方法，对应Mpper要实现BaseDAO的方法
 	│	│	├── model/
