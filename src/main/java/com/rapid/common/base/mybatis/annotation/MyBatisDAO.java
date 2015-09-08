@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @Target(ElementType.TYPE)
 @Documented
 @Component
-public @interface MyBatisMapper {
+public @interface MyBatisDAO {
 
 	String value() default "";
 	
