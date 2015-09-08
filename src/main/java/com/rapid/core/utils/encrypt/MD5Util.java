@@ -1,4 +1,4 @@
-package com.rapid.common.utils.encrypt;
+package com.rapid.core.utils.encrypt;
 
 import java.security.MessageDigest;
 

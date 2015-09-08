@@ -1,4 +1,4 @@
-package com.rapid.common.base.mybatis.annotation;
+package com.rapid.core.base.mybatis.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

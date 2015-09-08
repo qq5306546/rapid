@@ -1,4 +1,4 @@
-package com.rapid.common.utils;
+package com.rapid.core.utils;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;

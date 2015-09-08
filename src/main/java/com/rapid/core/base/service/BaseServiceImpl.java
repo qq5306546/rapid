@@ -1,4 +1,4 @@
-package com.rapid.common.base.service;
+package com.rapid.core.base.service;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.rapid.common.base.mybatis.dao.BaseDAO;
-import com.rapid.common.base.mybatis.model.BaseModel;
-import com.rapid.common.exception.BaseException;
-import com.rapid.common.utils.BeanUtil;
+import com.rapid.core.base.mybatis.dao.BaseDAO;
+import com.rapid.core.base.mybatis.model.BaseModel;
+import com.rapid.core.exception.BaseException;
+import com.rapid.core.utils.BeanUtil;
 
 @SuppressWarnings("rawtypes")
 public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> implements BaseService<T, ID> {

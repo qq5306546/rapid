@@ -1,4 +1,4 @@
-package com.rapid.common.plugin.config;
+package com.rapid.core.plugin.config;
 
 /**
  * 全局配置文件key

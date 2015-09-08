@@ -1,4 +1,4 @@
-package com.rapid.common.plugin;
+package com.rapid.core.plugin;
 
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;

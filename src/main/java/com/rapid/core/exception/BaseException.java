@@ -1,4 +1,4 @@
-package com.rapid.common.exception;
+package com.rapid.core.exception;
 
 @SuppressWarnings("serial")
 public class BaseException extends RuntimeException {

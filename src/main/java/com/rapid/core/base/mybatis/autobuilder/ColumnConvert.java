@@ -1,4 +1,4 @@
-package com.rapid.common.base.mybatis.autobuilder;
+package com.rapid.core.base.mybatis.autobuilder;
 
 public class ColumnConvert {
 

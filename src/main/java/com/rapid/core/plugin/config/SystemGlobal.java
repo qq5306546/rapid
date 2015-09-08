@@ -1,4 +1,4 @@
-package com.rapid.common.plugin.config;
+package com.rapid.core.plugin.config;
 
 import java.util.Properties;
 

@@ -1,4 +1,4 @@
-package com.rapid.common.base.mybatis.model;
+package com.rapid.core.base.mybatis.model;
 
 import java.io.Serializable;
 import java.util.Date;

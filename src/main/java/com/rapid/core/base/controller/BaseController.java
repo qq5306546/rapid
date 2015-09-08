@@ -1,4 +1,4 @@
-package com.rapid.common.base.controller;
+package com.rapid.core.base.controller;
 
 import java.util.Map;
 
