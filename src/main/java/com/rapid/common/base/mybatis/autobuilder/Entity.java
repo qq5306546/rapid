@@ -310,7 +310,7 @@ public class Entity {
 					+ "Map\">  \r\n");
 			buff.append("			select <include refid=\"allColumns\" />  \r\n");
 			buff.append("			from  " + this.tableName + " \r\n");
-			buff.append("			where " + primaryKeyField.getFieldName() + " = #" + pkId + "#  \r\n");
+			buff.append("			where " + primaryKeyField.getFieldName() + " = #{" + pkId + "}  \r\n");
 			buff.append("	</select> \r\n");
 			buff.append("\r\n");
 		}
@@ -333,9 +333,9 @@ public class Entity {
 			buff.append("		)  \r\n");
 			buff.append("		values  \r\n");
 			buff.append("		(  \r\n");
-			buff.append("			#" + pkId + "#,");
+			buff.append("			#{" + pkId + "},");
 			for (Field f : fields) {
-				buff.append("#" + ColumnConvert.getJavaBeanPropsNameBy(f.getFieldName()) + "#,");
+				buff.append("#{" + ColumnConvert.getJavaBeanPropsNameBy(f.getFieldName()) + "},");
 			}
 			buff.deleteCharAt(buff.length() - 1); // 移除for循环后多余的逗号
 			buff.append(" \r\n");
@@ -353,7 +353,7 @@ public class Entity {
 				buff.append("			<if test=\""+attr+" != null\" >"+f.getFieldName()+" = #{"+attr+"},</if> \r\n");
 			}
 			buff.append("		</set>  \r\n");
-			buff.append("		where " + primaryKeyField.getFieldName() + " = #" + pkId + "# \r\n");
+			buff.append("		where " + primaryKeyField.getFieldName() + " = #{" + pkId + "} \r\n");
 			buff.append("	</update> \r\n");
 			buff.append("\r\n");
 		}
@@ -362,7 +362,7 @@ public class Entity {
 			buff.append("	<!-- 通过主键删除对象 --> \r\n");
 			buff.append("	<delete id=\"deleteById\" parameterType=\"java.lang.String\"> \r\n");
 			buff.append("		delete from " + this.tableName + " \r\n");
-			buff.append("		where " + primaryKeyField.getFieldName() + " = #" + pkId + "# \r\n");
+			buff.append("		where " + primaryKeyField.getFieldName() + " = #{" + pkId + "} \r\n");
 			buff.append("	</delete> \r\n");
 			buff.append("\r\n");
 		}
