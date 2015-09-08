@@ -95,6 +95,10 @@ public class Entity {
 			primaryKeyFieldName = priKeySet.getString(4);
 			primaryKeyPropertyName = ColumnConvert.getJavaBeanPropsNameBy(primaryKeyFieldName);
 			primaryKeyField = new Field(primaryKeyFieldName, primaryKeyPropertyName, true);
+			ResultSet remarkSet = databaseMetaData.getColumns(null, null, tableName, primaryKeyFieldName);
+			if (remarkSet.next()) {
+				primaryKeyField.setRemark(remarkSet.getString("REMARKS"));
+			}
 		}
 		priKeySet.close();
 
@@ -106,6 +110,10 @@ public class Entity {
 				String propertyName = ColumnConvert.getJavaBeanPropsNameBy(fieldName);
 				Field field = new Field(fieldName, propertyName, false);
 				field.setDataType(iColumnType);
+				ResultSet remarkSet = databaseMetaData.getColumns(null, null, tableName, fieldName);
+				if (remarkSet.next()) {
+					field.setRemark(remarkSet.getString("REMARKS"));
+				}
 				fields.add(field);
 			} else {
 				if (null != primaryKeyField) {
@@ -185,14 +193,14 @@ public class Entity {
 
 		if (this.primaryKeyField != null) {
 			codeBuffer.append("    private " + getDataType(this.primaryKeyField.getDataType()) + " "
-					+ this.primaryKeyField.getPropertyName() + ";\r\n");
+					+ this.primaryKeyField.getPropertyName() + ";\t\t" + this.primaryKeyField.getRemark() + "\r\n");
 		}
 
 		int iFieldCount = this.fields.size();
 		for (int i = 0; i < iFieldCount; i++) {
 			field = this.fields.get(i);
 			codeBuffer.append("    private " + getDataType(field.getDataType()) + " " + field.getPropertyName()
-					+ ";\r\n");
+					+ ";\t\t" + field.getRemark() + "\r\n");
 		}
 		codeBuffer.append("    \r\n");
 		codeBuffer.append("    \r\n\r\n");

@@ -8,6 +8,7 @@ public class Field {
 	private String fieldName;
 	private String propertyName;
 	private int dataType;
+	private String remark;
 	private boolean primaryKey;
 
 	public Field(String fieldName, String propertyName, boolean primaryKey) {
@@ -35,6 +36,17 @@ public class Field {
 
 	public void setDataType(int dataType) {
 		this.dataType = dataType;
+	}
+
+	public String getRemark() {
+		if (this.remark != null && !this.remark.equals("")) {
+			return "//" + this.remark;
+		}
+		return "";
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

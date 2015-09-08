@@ -15,11 +15,13 @@ public class AutoBuilder {
 	// 数据库配置文件
 	static String DB_PROPERTIES = "jdbc.properties";
 	// 根据表自行定义
-	static String TABLE_NAME = "party";
+	static String[] TABLE_NAME = {"party", "party_type"};
 
 	public static void main(String[] args) throws Exception {
-		Entity entity = new Entity(PAKAGE_PATH, SRC_PROJECT_PATH);
-		entity.builderEntity(DB_PROPERTIES, TABLE_NAME);
-		entity.buildIbatis();
+		for (String name : TABLE_NAME) {
+			Entity entity = new Entity(PAKAGE_PATH, SRC_PROJECT_PATH);
+			entity.builderEntity(DB_PROPERTIES, name);
+			entity.buildIbatis();
+		}
 	}
 }
