@@ -51,6 +51,10 @@ public class Entity {
 	private String SRC = File.separatorChar + "src" + File.separatorChar;
 
 	private String tableName;
+	
+	private final String PATH_DAO = ".dao.";
+	
+	private final String PATH_MODEL = ".model.";
 
 	public Entity(String pakagePath, String srcProjectPath) {
 		this.srcProjectPath = srcProjectPath;
@@ -250,8 +254,8 @@ public class Entity {
 		buff.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \r\n");
 		buff
 				.append("<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\"> \r\n");
-		buff.append("<mapper namespace=\"" + this.entityName + "\"> \r\n");
-		buff.append("	<resultMap id=\"" + this.entityName + "Map\" type=\"" + this.entityName + "\"> \r\n");
+		buff.append("<mapper namespace=\"" + this.pakagePath + PATH_DAO + this.entityName + "DAO\"> \r\n");
+		buff.append("	<resultMap id=\"" + this.entityName + "Map\" type=\"" + this.pakagePath + PATH_MODEL + this.entityName + "\"> \r\n");
 
 		if (StringUtils.isNotBlank(pkId)) {
 			buff
@@ -282,36 +286,33 @@ public class Entity {
 		buff.append(" \r\n");
 		buff.append("	</sql> \r\n");
 		buff.append("	<sql id=\"dynamicWhere\"> \r\n");
+		buff.append("     <where> \r\n");
+		buff.append("       <trim prefixOverrides=\"and\"> \r\n");
+		
+        
 
 		if (StringUtils.isNotBlank(pkId)) {
-			buff.append("		<isNotNull prepend=\"and\" property=\"" + pkId + "\">  \r\n");
-			buff.append("			" + primaryKeyField.getFieldName() + " = #" + pkId + "# \r\n");
-			buff.append("		</isNotNull> \r\n");
+			buff.append("		<if test=\""+pkId+" != null\" >and "+primaryKeyField.getFieldName()+" = #{"+pkId+"}</if>\r\n");
 		}
 		for (Field f : fields) {
 			String attrName = ColumnConvert.getJavaBeanPropsNameBy(f.getFieldName());
-			buff.append("		<isNotNull prepend=\"and\" property=\"" + attrName + "\">  \r\n");
-			buff.append("			" + f.getFieldName() + " = #" + attrName + "# \r\n");
-			buff.append("		</isNotNull> \r\n");
+			buff.append("		<if test=\""+attrName+" != null\" >and "+f.getFieldName()+" = #{"+attrName+"}</if>\r\n");
 		}
+		buff.append("       </trim> \r\n");
+		buff.append("     </where> \r\n");
 		buff.append("	</sql> \r\n");
 		buff.append("	<!-- 通过复合条件查询 --> \r\n");
-		buff.append("	<select id=\"select\" parameterClass=\"java.util.HashMap\" resultMap=\"" + this.entityName
+		buff.append("	<select id=\"select\" parameterType=\"java.util.HashMap\" resultMap=\"" + this.entityName
 				+ "Map\">  \r\n");
 		buff.append("		select <include refid=\"allColumns\" />  \r\n");
 		buff.append("		from  " + this.tableName + " \r\n");
-		buff.append("		<dynamic prepend=\"where\"> \r\n");
-		buff.append("			<include refid=\"dynamicWhere\" /> \r\n");
-		buff.append("		</dynamic> \r\n");
-		buff.append("		<dynamic prepend=\"order by\"> \r\n");
-		buff.append("	        <isNotEmpty property=\"fieldSort\"> $fieldSort$ </isNotEmpty> \r\n");
-		buff.append("	    </dynamic> \r\n");
+		buff.append("		<include refid=\"dynamicWhere\" /> \r\n");
 		buff.append("	</select> \r\n");
 		buff.append("\r\n");
 
 		if (primaryKeyField != null) {
 			buff.append("	<!-- 通过主键查询对象 --> \r\n");
-			buff.append("	<select id=\"view\" parameterClass=\"java.lang.String\" resultMap=\"" + this.entityName
+			buff.append("	<select id=\"selectById\" parameterType=\"java.lang.String\" resultMap=\"" + this.entityName
 					+ "Map\">  \r\n");
 			buff.append("			select <include refid=\"allColumns\" />  \r\n");
 			buff.append("			from  " + this.tableName + " \r\n");
@@ -322,18 +323,16 @@ public class Entity {
 
 		buff.append("	<!-- 统计 --> \r\n");
 		buff
-				.append("	<select id=\"count\" parameterClass=\"java.util.HashMap\" resultClass=\"java.lang.Integer\">  \r\n");
+				.append("	<select id=\"selectCount\" parameterType=\"java.util.HashMap\" resultClass=\"java.lang.Integer\">  \r\n");
 		buff.append("		select count(1) \r\n");
 		buff.append("		from  " + this.tableName + " \r\n");
-		buff.append("		<dynamic prepend=\"where\"> \r\n");
-		buff.append("			<include refid=\"dynamicWhere\" /> \r\n");
-		buff.append("		</dynamic> \r\n");
+		buff.append("		<include refid=\"dynamicWhere\" /> \r\n");
 		buff.append("	</select> \r\n");
 		buff.append("\r\n");
 
 		if (primaryKeyField != null) {
 			buff.append("	<!-- 新增对象 --> \r\n");
-			buff.append("	<insert id=\"insert\" parameterClass=\"" + this.entityName + "\">  \r\n");
+			buff.append("	<insert id=\"insert\" parameterType=\"" + this.pakagePath + PATH_MODEL + this.entityName + "\">  \r\n");
 			buff.append("		insert into " + this.tableName + " \r\n");
 			buff.append("		(  \r\n");
 			buff.append("			<include refid=\"allColumns\" /> \r\n");
@@ -350,18 +349,16 @@ public class Entity {
 			buff.append("	</insert> \r\n");
 			buff.append("\r\n");
 		}
-
 		if (primaryKeyField != null) {
 			buff.append("	<!-- 修改对象 --> \r\n");
-			buff.append("	<update id=\"update\" parameterClass=\"" + this.entityName + "\">  \r\n");
+			buff.append("	<update id=\"update\" parameterType=\"" + this.pakagePath + PATH_MODEL + this.entityName + "\">  \r\n");
 			buff.append("		update " + this.tableName + " \r\n");
-			buff.append("		<dynamic prepend=\"set\"> \r\n");
+			buff.append("		<set> \r\n");
 			for (Field f : fields) {
 				String attr = ColumnConvert.getJavaBeanPropsNameBy(f.getFieldName());
-				buff.append("			<isNotNull prepend=\",\" property=\"" + attr + "\">" + f.getFieldName() + " = #" + attr
-						+ "#</isNotNull> \r\n");
+				buff.append("			<if test=\""+attr+" != null\" >"+f.getFieldName()+" = #{"+attr+"},</if> \r\n");
 			}
-			buff.append("		</dynamic>  \r\n");
+			buff.append("		</set>  \r\n");
 			buff.append("		where " + primaryKeyField.getFieldName() + " = #" + pkId + "# \r\n");
 			buff.append("	</update> \r\n");
 			buff.append("\r\n");
@@ -369,7 +366,7 @@ public class Entity {
 
 		if (primaryKeyField != null) {
 			buff.append("	<!-- 通过主键删除对象 --> \r\n");
-			buff.append("	<delete id=\"delete\" parameterClass=\"java.lang.String\"> \r\n");
+			buff.append("	<delete id=\"deleteById\" parameterType=\"java.lang.String\"> \r\n");
 			buff.append("		delete from " + this.tableName + " \r\n");
 			buff.append("		where " + primaryKeyField.getFieldName() + " = #" + pkId + "# \r\n");
 			buff.append("	</delete> \r\n");
