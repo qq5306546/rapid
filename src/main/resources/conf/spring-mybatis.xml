@@ -34,8 +34,14 @@
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />
+<<<<<<< HEAD
         <property name="configLocation" value="classpath:conf/mybatis-config.xml" /> 
         <property name="mapperLocations" value="classpath*:com/rapid/module/**/dao/mapper/*.xml" /> 
+=======
+        <property name="configLocation" value="classpath:conf/mybatis-config.xml"></property> 
+        com.rapid.module
+        <property name="mapperLocations" value="classpath*:com/rapid/module/**/dao/Mapper/*.xml"></property> 
+>>>>>>> refs/heads/party
         <property name="plugins">
             <list>
                 <bean class="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">

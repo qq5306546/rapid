@@ -10,9 +10,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -180,16 +178,11 @@ public class Entity {
 		Field field;
 		StringBuffer codeBuffer = new StringBuffer();
 		String pakage = this.pakagePath.replace("\\", ".");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		codeBuffer.append("package " + pakage + ";\r\n\r\n");
 
 		codeBuffer.append("import java.util.Date;\r\n\r\n");
 		codeBuffer.append("import com.fly.common.entity.BaseModel;\r\n\r\n");
-		codeBuffer.append("/**\r\n");
-		codeBuffer.append("  *@author Administrator \r\n");
-		codeBuffer.append("  *时间：" + sdf.format(new Date()) + "\r\n");
-		codeBuffer.append("*/\r\n");
 
 		codeBuffer.append("public class " + this.entityName + " extends BaseModel {\r\n\r\n");
 
@@ -254,6 +247,7 @@ public class Entity {
 		buff.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \r\n");
 		buff
 				.append("<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\"> \r\n");
+
 		buff.append("<mapper namespace=\"" + this.pakagePath + PATH_DAO + this.entityName + "DAO\"> \r\n");
 		buff.append("	<resultMap id=\"" + this.entityName + "Map\" type=\"" + this.pakagePath + PATH_MODEL + this.entityName + "\"> \r\n");
 
