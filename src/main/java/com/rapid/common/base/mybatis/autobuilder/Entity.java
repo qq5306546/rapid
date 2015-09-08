@@ -176,16 +176,11 @@ public class Entity {
 		Field field;
 		StringBuffer codeBuffer = new StringBuffer();
 		String pakage = this.pakagePath.replace("\\", ".");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		codeBuffer.append("package " + pakage + ";\r\n\r\n");
 
 		codeBuffer.append("import java.util.Date;\r\n\r\n");
 		codeBuffer.append("import com.fly.common.entity.BaseModel;\r\n\r\n");
-		codeBuffer.append("/**\r\n");
-		codeBuffer.append("  *@author Administrator \r\n");
-		codeBuffer.append("  *时间：" + sdf.format(new Date()) + "\r\n");
-		codeBuffer.append("*/\r\n");
 
 		codeBuffer.append("public class " + this.entityName + " extends BaseModel {\r\n\r\n");
 
