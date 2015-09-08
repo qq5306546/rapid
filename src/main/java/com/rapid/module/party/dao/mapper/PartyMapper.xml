@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.rapid.module.party.dao.PartyDAO"> 
+	<resultMap id="PartyMap" type="com.rapid.module.party.model.Party"> 
+		<result property="partyId" column="party_id" /> 
+		<result property="partyTypeId" column="party_type_id" /> 
+		<result property="createStamp" column="create_stamp" /> 
+		<result property="lastUpdateStamp" column="last_update_stamp" /> 
+		<result property="createByUserLogin" column="create_by_user_login" /> 
+	</resultMap> 
+	<sql id="allColumns">  
+		party_id,party_type_id,create_stamp,last_update_stamp,create_by_user_login 
+	</sql> 
+	<sql id="dynamicWhere"> 
+     <where> 
+       <trim prefixOverrides="and"> 
+		<if test="partyId != null" >and party_id = #{partyId}</if>
+		<if test="partyTypeId != null" >and party_type_id = #{partyTypeId}</if>
+		<if test="createStamp != null" >and create_stamp = #{createStamp}</if>
+		<if test="lastUpdateStamp != null" >and last_update_stamp = #{lastUpdateStamp}</if>
+		<if test="createByUserLogin != null" >and create_by_user_login = #{createByUserLogin}</if>
+       </trim> 
+     </where> 
+	</sql> 
+	<!-- 通过复合条件查询 --> 
+	<select id="select" parameterType="java.util.HashMap" resultMap="PartyMap">  
+		select <include refid="allColumns" />  
+		from  party 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 通过主键查询对象 --> 
+	<select id="selectById" parameterType="java.lang.String" resultMap="PartyMap">  
+			select <include refid="allColumns" />  
+			from  party 
+			where party_id = #partyId#  
+	</select> 
+
+	<!-- 统计 --> 
+	<select id="selectCount" parameterType="java.util.HashMap" resultClass="java.lang.Integer">  
+		select count(1) 
+		from  party 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 新增对象 --> 
+	<insert id="insert" parameterType="com.rapid.module.party.model.Party">  
+		insert into party 
+		(  
+			<include refid="allColumns" /> 
+		)  
+		values  
+		(  
+			#partyId#,#partyTypeId#,#createStamp#,#lastUpdateStamp#,#createByUserLogin# 
+		)  
+	</insert> 
+
+	<!-- 修改对象 --> 
+	<update id="update" parameterType="com.rapid.module.party.model.Party">  
+		update party 
+		<set> 
+			<if test="partyTypeId != null" >party_type_id = #{partyTypeId},</if> 
+			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
+			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
+			<if test="createByUserLogin != null" >create_by_user_login = #{createByUserLogin},</if> 
+		</set>  
+		where party_id = #partyId# 
+	</update> 
+
+	<!-- 通过主键删除对象 --> 
+	<delete id="deleteById" parameterType="java.lang.String"> 
+		delete from party 
+		where party_id = #partyId# 
+	</delete> 
+
+</mapper> 

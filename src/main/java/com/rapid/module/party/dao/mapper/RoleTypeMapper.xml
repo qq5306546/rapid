@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.rapid.module.party.dao.RoleTypeDAO"> 
+	<resultMap id="RoleTypeMap" type="com.rapid.module.party.model.RoleType"> 
+		<result property="roleTypeId" column="role_type_id" /> 
+		<result property="parentTypeId" column="parent_type_id" /> 
+		<result property="hasTable" column="has_table" /> 
+		<result property="description" column="description" /> 
+		<result property="createStamp" column="create_stamp" /> 
+		<result property="lastUpdateStamp" column="last_update_stamp" /> 
+	</resultMap> 
+	<sql id="allColumns">  
+		role_type_id,parent_type_id,has_table,description,create_stamp,last_update_stamp 
+	</sql> 
+	<sql id="dynamicWhere"> 
+     <where> 
+       <trim prefixOverrides="and"> 
+		<if test="roleTypeId != null" >and role_type_id = #{roleTypeId}</if>
+		<if test="parentTypeId != null" >and parent_type_id = #{parentTypeId}</if>
+		<if test="hasTable != null" >and has_table = #{hasTable}</if>
+		<if test="description != null" >and description = #{description}</if>
+		<if test="createStamp != null" >and create_stamp = #{createStamp}</if>
+		<if test="lastUpdateStamp != null" >and last_update_stamp = #{lastUpdateStamp}</if>
+       </trim> 
+     </where> 
+	</sql> 
+	<!-- 通过复合条件查询 --> 
+	<select id="select" parameterType="java.util.HashMap" resultMap="RoleTypeMap">  
+		select <include refid="allColumns" />  
+		from  role_type 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 通过主键查询对象 --> 
+	<select id="selectById" parameterType="java.lang.String" resultMap="RoleTypeMap">  
+			select <include refid="allColumns" />  
+			from  role_type 
+			where role_type_id = #roleTypeId#  
+	</select> 
+
+	<!-- 统计 --> 
+	<select id="selectCount" parameterType="java.util.HashMap" resultClass="java.lang.Integer">  
+		select count(1) 
+		from  role_type 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 新增对象 --> 
+	<insert id="insert" parameterType="com.rapid.module.party.model.RoleType">  
+		insert into role_type 
+		(  
+			<include refid="allColumns" /> 
+		)  
+		values  
+		(  
+			#roleTypeId#,#parentTypeId#,#hasTable#,#description#,#createStamp#,#lastUpdateStamp# 
+		)  
+	</insert> 
+
+	<!-- 修改对象 --> 
+	<update id="update" parameterType="com.rapid.module.party.model.RoleType">  
+		update role_type 
+		<set> 
+			<if test="parentTypeId != null" >parent_type_id = #{parentTypeId},</if> 
+			<if test="hasTable != null" >has_table = #{hasTable},</if> 
+			<if test="description != null" >description = #{description},</if> 
+			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
+			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
+		</set>  
+		where role_type_id = #roleTypeId# 
+	</update> 
+
+	<!-- 通过主键删除对象 --> 
+	<delete id="deleteById" parameterType="java.lang.String"> 
+		delete from role_type 
+		where role_type_id = #roleTypeId# 
+	</delete> 
+
+</mapper> 

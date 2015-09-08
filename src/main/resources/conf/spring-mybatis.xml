@@ -35,7 +35,6 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:conf/mybatis-config.xml"></property> 
-        com.rapid.module
         <property name="mapperLocations" value="classpath*:com/rapid/module/**/dao/Mapper/*.xml"></property> 
         <property name="plugins">
             <list>

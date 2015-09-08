@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.rapid.module.party.dao.PartyGroupDAO"> 
+	<resultMap id="PartyGroupMap" type="com.rapid.module.party.model.PartyGroup"> 
+		<result property="partyId" column="party_id" /> 
+		<result property="groupName" column="group_name" /> 
+		<result property="groupNameLocal" column="group_name_local" /> 
+		<result property="officeSiteName" column="office_site_name" /> 
+		<result property="comments" column="comments" /> 
+		<result property="createStamp" column="create_stamp" /> 
+		<result property="lastUpdateStamp" column="last_update_stamp" /> 
+	</resultMap> 
+	<sql id="allColumns">  
+		party_id,group_name,group_name_local,office_site_name,comments,create_stamp,last_update_stamp 
+	</sql> 
+	<sql id="dynamicWhere"> 
+     <where> 
+       <trim prefixOverrides="and"> 
+		<if test="partyId != null" >and party_id = #{partyId}</if>
+		<if test="groupName != null" >and group_name = #{groupName}</if>
+		<if test="groupNameLocal != null" >and group_name_local = #{groupNameLocal}</if>
+		<if test="officeSiteName != null" >and office_site_name = #{officeSiteName}</if>
+		<if test="comments != null" >and comments = #{comments}</if>
+		<if test="createStamp != null" >and create_stamp = #{createStamp}</if>
+		<if test="lastUpdateStamp != null" >and last_update_stamp = #{lastUpdateStamp}</if>
+       </trim> 
+     </where> 
+	</sql> 
+	<!-- 通过复合条件查询 --> 
+	<select id="select" parameterType="java.util.HashMap" resultMap="PartyGroupMap">  
+		select <include refid="allColumns" />  
+		from  party_group 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 通过主键查询对象 --> 
+	<select id="selectById" parameterType="java.lang.String" resultMap="PartyGroupMap">  
+			select <include refid="allColumns" />  
+			from  party_group 
+			where party_id = #partyId#  
+	</select> 
+
+	<!-- 统计 --> 
+	<select id="selectCount" parameterType="java.util.HashMap" resultClass="java.lang.Integer">  
+		select count(1) 
+		from  party_group 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 新增对象 --> 
+	<insert id="insert" parameterType="com.rapid.module.party.model.PartyGroup">  
+		insert into party_group 
+		(  
+			<include refid="allColumns" /> 
+		)  
+		values  
+		(  
+			#partyId#,#groupName#,#groupNameLocal#,#officeSiteName#,#comments#,#createStamp#,#lastUpdateStamp# 
+		)  
+	</insert> 
+
+	<!-- 修改对象 --> 
+	<update id="update" parameterType="com.rapid.module.party.model.PartyGroup">  
+		update party_group 
+		<set> 
+			<if test="groupName != null" >group_name = #{groupName},</if> 
+			<if test="groupNameLocal != null" >group_name_local = #{groupNameLocal},</if> 
+			<if test="officeSiteName != null" >office_site_name = #{officeSiteName},</if> 
+			<if test="comments != null" >comments = #{comments},</if> 
+			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
+			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
+		</set>  
+		where party_id = #partyId# 
+	</update> 
+
+	<!-- 通过主键删除对象 --> 
+	<delete id="deleteById" parameterType="java.lang.String"> 
+		delete from party_group 
+		where party_id = #partyId# 
+	</delete> 
+
+</mapper> 
