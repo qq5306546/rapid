@@ -10,20 +10,20 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class BaseModel implements Serializable {
 
-	private Date createTime; 		// 创建时间
-	private Date lastUpdateTime; 	// 最后修改时间
+	private Date createStamp; 		// 创建时间
+	private Date lastUpdateStamp; 	// 最后修改时间
 	
-	public Date getCreateTime() {
-		return createTime;
+	public Date getCreateStamp() {
+		return createStamp;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreateStamp(Date createStamp) {
+		this.createStamp = createStamp;
 	}
-	public Date getLastUpdateTime() {
-		return lastUpdateTime;
+	public Date getLastUpdateStamp() {
+		return lastUpdateStamp;
 	}
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
+	public void setLastUpdateStamp(Date lastUpdateStamp) {
+		this.lastUpdateStamp = lastUpdateStamp;
 	}
 	
 	
