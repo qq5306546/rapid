@@ -9,4 +9,11 @@ import com.rapid.module.party.service.PartyTypeService;
 @Service
 public class PartyTypeServiceImpl extends BaseServiceImpl<PartyType, String> implements PartyTypeService {
 
+	@Override
+	public String selectParentId(String partyTypeId) {
+		PartyType partyType = selectById(partyTypeId);
+		
+		return null;
+	}
+
 }
