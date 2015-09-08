@@ -317,7 +317,7 @@ public class Entity {
 
 		buff.append("	<!-- 统计 --> \r\n");
 		buff
-				.append("	<select id=\"selectCount\" parameterType=\"java.util.HashMap\" resultClass=\"java.lang.Integer\">  \r\n");
+				.append("	<select id=\"selectCount\" parameterType=\"java.util.HashMap\" resultType=\"java.lang.Integer\">  \r\n");
 		buff.append("		select count(1) \r\n");
 		buff.append("		from  " + this.tableName + " \r\n");
 		buff.append("		<include refid=\"dynamicWhere\" /> \r\n");
