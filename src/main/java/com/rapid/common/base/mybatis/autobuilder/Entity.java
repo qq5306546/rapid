@@ -250,11 +250,8 @@ public class Entity {
 		buff.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> \r\n");
 		buff
 				.append("<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\"> \r\n");
-		buff.append("<sqlMap namespace=\"" + this.entityName + "\"> \r\n");
-		String className = srcPakagePath.replace("\\", ".") + this.entityName;
-		buff.append("	<typeAlias alias=\"" + this.entityName + "\" type=\""
-				+ className.substring(5, className.length()) + "\" /> \r\n");
-		buff.append("	<resultMap id=\"" + this.entityName + "Map\" class=\"" + this.entityName + "\"> \r\n");
+		buff.append("<mapper namespace=\"" + this.entityName + "\"> \r\n");
+		buff.append("	<resultMap id=\"" + this.entityName + "Map\" type=\"" + this.entityName + "\"> \r\n");
 
 		if (StringUtils.isNotBlank(pkId)) {
 			buff
@@ -379,7 +376,7 @@ public class Entity {
 			buff.append("\r\n");
 		}
 
-		buff.append("</sqlMap> \r\n");
+		buff.append("</mapper> \r\n");
 
 		// 接口文件
 		String fileName = this.srcProjectPath + this.srcPakagePath + this.entityName + "Mapper.xml";
