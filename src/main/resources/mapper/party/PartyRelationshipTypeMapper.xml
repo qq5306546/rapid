@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.rapid.module.party.dao.PartyRelationshipTypeDAO"> 
+	<resultMap id="PartyRelationshipTypeMap" type="com.rapid.module.party.model.PartyRelationshipType"> 
+		<result property="partyRelationshipTypeId" column="party_relationship_type_id" /> 
+		<result property="parentTypeId" column="parent_type_id" /> 
+		<result property="hasTable" column="has_table" /> 
+		<result property="partyRelationshipName" column="party_relationship_name" /> 
+		<result property="description" column="description" /> 
+		<result property="createStamp" column="create_stamp" /> 
+		<result property="lastUpdateStamp" column="last_update_stamp" /> 
+	</resultMap> 
+	<sql id="allColumns">  
+		party_relationship_type_id,parent_type_id,has_table,party_relationship_name,description,create_stamp,last_update_stamp 
+	</sql> 
+	<sql id="dynamicWhere"> 
+     <where> 
+       <trim prefixOverrides="and"> 
+		<if test="partyRelationshipTypeId != null" >and party_relationship_type_id = #{partyRelationshipTypeId}</if>
+		<if test="parentTypeId != null" >and parent_type_id = #{parentTypeId}</if>
+		<if test="hasTable != null" >and has_table = #{hasTable}</if>
+		<if test="partyRelationshipName != null" >and party_relationship_name = #{partyRelationshipName}</if>
+		<if test="description != null" >and description = #{description}</if>
+		<if test="createStamp != null" >and create_stamp = #{createStamp}</if>
+		<if test="lastUpdateStamp != null" >and last_update_stamp = #{lastUpdateStamp}</if>
+       </trim> 
+     </where> 
+	</sql> 
+	<!-- 通过复合条件查询 --> 
+	<select id="select" parameterType="java.util.HashMap" resultMap="PartyRelationshipTypeMap">  
+		select <include refid="allColumns" />  
+		from  party_relationship_type 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 通过主键查询对象 --> 
+	<select id="selectById" parameterType="java.lang.String" resultMap="PartyRelationshipTypeMap">  
+			select <include refid="allColumns" />  
+			from  party_relationship_type 
+			where party_relationship_type_id = #partyRelationshipTypeId#  
+	</select> 
+
+	<!-- 统计 --> 
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">  
+		select count(1) 
+		from  party_relationship_type 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 新增对象 --> 
+	<insert id="insert" parameterType="com.rapid.module.party.model.PartyRelationshipType">  
+		insert into party_relationship_type 
+		(  
+			<include refid="allColumns" /> 
+		)  
+		values  
+		(  
+			#partyRelationshipTypeId#,#parentTypeId#,#hasTable#,#partyRelationshipName#,#description#,#createStamp#,#lastUpdateStamp# 
+		)  
+	</insert> 
+
+	<!-- 修改对象 --> 
+	<update id="update" parameterType="com.rapid.module.party.model.PartyRelationshipType">  
+		update party_relationship_type 
+		<set> 
+			<if test="parentTypeId != null" >parent_type_id = #{parentTypeId},</if> 
+			<if test="hasTable != null" >has_table = #{hasTable},</if> 
+			<if test="partyRelationshipName != null" >party_relationship_name = #{partyRelationshipName},</if> 
+			<if test="description != null" >description = #{description},</if> 
+			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
+			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
+		</set>  
+		where party_relationship_type_id = #partyRelationshipTypeId# 
+	</update> 
+
+	<!-- 通过主键删除对象 --> 
+	<delete id="deleteById" parameterType="java.lang.String"> 
+		delete from party_relationship_type 
+		where party_relationship_type_id = #partyRelationshipTypeId# 
+	</delete> 
+
+</mapper> 

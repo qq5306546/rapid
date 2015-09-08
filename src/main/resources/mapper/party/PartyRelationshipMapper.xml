@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.rapid.module.party.dao.PartyRelationshipDAO"> 
+	<resultMap id="PartyRelationshipMap" type="com.rapid.module.party.model.PartyRelationship"> 
+		<result property="partyIdFrom" column="party_id_from" /> 
+		<result property="partyIdTo" column="party_id_to" /> 
+		<result property="partyRelationshipTypeId" column="party_relationship_type_id" /> 
+		<result property="roleTypeIdFrom" column="role_type_id_from" /> 
+		<result property="roleTypeIdTo" column="role_type_id_to" /> 
+		<result property="fromDate" column="from_date" /> 
+		<result property="thruDate" column="thru_date" /> 
+		<result property="createStamp" column="create_stamp" /> 
+		<result property="lastUpdateStamp" column="last_update_stamp" /> 
+	</resultMap> 
+	<sql id="allColumns">  
+		party_id_from,party_id_to,party_relationship_type_id,role_type_id_from,role_type_id_to,from_date,thru_date,create_stamp,last_update_stamp 
+	</sql> 
+	<sql id="dynamicWhere"> 
+     <where> 
+       <trim prefixOverrides="and"> 
+		<if test="partyIdFrom != null" >and party_id_from = #{partyIdFrom}</if>
+		<if test="partyIdTo != null" >and party_id_to = #{partyIdTo}</if>
+		<if test="partyRelationshipTypeId != null" >and party_relationship_type_id = #{partyRelationshipTypeId}</if>
+		<if test="roleTypeIdFrom != null" >and role_type_id_from = #{roleTypeIdFrom}</if>
+		<if test="roleTypeIdTo != null" >and role_type_id_to = #{roleTypeIdTo}</if>
+		<if test="fromDate != null" >and from_date = #{fromDate}</if>
+		<if test="thruDate != null" >and thru_date = #{thruDate}</if>
+		<if test="createStamp != null" >and create_stamp = #{createStamp}</if>
+		<if test="lastUpdateStamp != null" >and last_update_stamp = #{lastUpdateStamp}</if>
+       </trim> 
+     </where> 
+	</sql> 
+	<!-- 通过复合条件查询 --> 
+	<select id="select" parameterType="java.util.HashMap" resultMap="PartyRelationshipMap">  
+		select <include refid="allColumns" />  
+		from  party_relationship 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 通过主键查询对象 --> 
+	<select id="selectById" parameterType="java.lang.String" resultMap="PartyRelationshipMap">  
+			select <include refid="allColumns" />  
+			from  party_relationship 
+			where party_id_from = #partyIdFrom#  
+	</select> 
+
+	<!-- 统计 --> 
+	<select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">  
+		select count(1) 
+		from  party_relationship 
+		<include refid="dynamicWhere" /> 
+	</select> 
+
+	<!-- 新增对象 --> 
+	<insert id="insert" parameterType="com.rapid.module.party.model.PartyRelationship">  
+		insert into party_relationship 
+		(  
+			<include refid="allColumns" /> 
+		)  
+		values  
+		(  
+			#partyIdFrom#,#partyIdTo#,#partyRelationshipTypeId#,#roleTypeIdFrom#,#roleTypeIdTo#,#fromDate#,#thruDate#,#createStamp#,#lastUpdateStamp# 
+		)  
+	</insert> 
+
+	<!-- 修改对象 --> 
+	<update id="update" parameterType="com.rapid.module.party.model.PartyRelationship">  
+		update party_relationship 
+		<set> 
+			<if test="partyIdTo != null" >party_id_to = #{partyIdTo},</if> 
+			<if test="partyRelationshipTypeId != null" >party_relationship_type_id = #{partyRelationshipTypeId},</if> 
+			<if test="roleTypeIdFrom != null" >role_type_id_from = #{roleTypeIdFrom},</if> 
+			<if test="roleTypeIdTo != null" >role_type_id_to = #{roleTypeIdTo},</if> 
+			<if test="fromDate != null" >from_date = #{fromDate},</if> 
+			<if test="thruDate != null" >thru_date = #{thruDate},</if> 
+			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
+			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
+		</set>  
+		where party_id_from = #partyIdFrom# 
+	</update> 
+
+	<!-- 通过主键删除对象 --> 
+	<delete id="deleteById" parameterType="java.lang.String"> 
+		delete from party_relationship 
+		where party_id_from = #partyIdFrom# 
+	</delete> 
+
+</mapper> 
