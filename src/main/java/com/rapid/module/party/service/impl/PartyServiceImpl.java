@@ -18,6 +18,8 @@ public class PartyServiceImpl extends BaseServiceImpl<Party, String> implements 
 	private PartyTypeService partyTypeService;
 
 	public int createParty(Party party) {
+		System.out.println(partyTypeService.selectParentId("TEAM"));
+		
 		return 0;
 	}
 }

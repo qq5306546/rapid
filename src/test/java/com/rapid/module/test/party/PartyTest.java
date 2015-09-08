@@ -17,6 +17,7 @@ public class PartyTest {
 
 	@Test
 	public void createParty() {
+		
 		partyService.createParty(null);
 	}
 }

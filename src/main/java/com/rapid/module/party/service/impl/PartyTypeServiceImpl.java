@@ -12,8 +12,10 @@ public class PartyTypeServiceImpl extends BaseServiceImpl<PartyType, String> imp
 	@Override
 	public String selectParentId(String partyTypeId) {
 		PartyType partyType = selectById(partyTypeId);
-		
-		return null;
+		if (partyType.getHasTable().equals("N") && partyType.getParentTypeId() != null) {
+			return this.selectParentId(partyType.getParentTypeId());
+		} 
+		return partyType.getPartyTypeId();
 	}
 
 }
