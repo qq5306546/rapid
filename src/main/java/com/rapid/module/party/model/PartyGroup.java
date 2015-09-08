@@ -1,6 +1,6 @@
 package com.rapid.module.party.model;
 
-import com.rapid.common.base.mybatis.model.BaseModel;
+import com.rapid.core.base.mybatis.model.BaseModel;
 
 @SuppressWarnings("serial")
 public class PartyGroup extends BaseModel {

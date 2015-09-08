@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rapid.common.base.controller.BaseController;
-import com.rapid.common.plugin.config.SystemGlobal;
+import com.rapid.core.base.controller.BaseController;
+import com.rapid.core.plugin.config.SystemGlobal;
 
 @Controller
 @RequestMapping("/party")

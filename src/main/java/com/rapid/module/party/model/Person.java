@@ -2,7 +2,7 @@ package com.rapid.module.party.model;
 
 import java.util.Date;
 
-import com.rapid.common.base.mybatis.model.BaseModel;
+import com.rapid.core.base.mybatis.model.BaseModel;
 
 @SuppressWarnings("serial")
 public class Person extends BaseModel {

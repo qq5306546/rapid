@@ -1,6 +1,6 @@
 package com.rapid.module.party.service;
 
-import com.rapid.common.base.service.BaseService;
+import com.rapid.core.base.service.BaseService;
 import com.rapid.module.party.model.PartyType;
 
 /**

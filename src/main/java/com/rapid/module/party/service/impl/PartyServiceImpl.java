@@ -3,8 +3,8 @@ package com.rapid.module.party.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rapid.common.base.service.BaseServiceImpl;
-import com.rapid.common.plugin.config.SystemGlobal;
+import com.rapid.core.base.service.BaseServiceImpl;
+import com.rapid.core.plugin.config.SystemGlobal;
 import com.rapid.module.party.model.Party;
 import com.rapid.module.party.service.PartyService;
 import com.rapid.module.party.service.PartyTypeService;
