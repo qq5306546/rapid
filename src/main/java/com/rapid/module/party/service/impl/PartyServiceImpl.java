@@ -7,12 +7,15 @@ import com.rapid.common.base.service.BaseServiceImpl;
 import com.rapid.common.plugin.config.SystemGlobal;
 import com.rapid.module.party.model.Party;
 import com.rapid.module.party.service.PartyService;
+import com.rapid.module.party.service.PartyTypeService;
 
 @Service
 public class PartyServiceImpl extends BaseServiceImpl<Party, String> implements PartyService {
 	
 	@Autowired
 	private SystemGlobal systemGlobal;
+	@Autowired
+	private PartyTypeService partyTypeService;
 
 	public int createParty(Party party) {
 		return 0;

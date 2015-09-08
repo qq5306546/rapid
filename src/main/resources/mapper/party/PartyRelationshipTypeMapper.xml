@@ -37,7 +37,7 @@
 	<select id="selectById" parameterType="java.lang.String" resultMap="PartyRelationshipTypeMap">  
 			select <include refid="allColumns" />  
 			from  party_relationship_type 
-			where party_relationship_type_id = #partyRelationshipTypeId#  
+			where party_relationship_type_id = #{partyRelationshipTypeId}  
 	</select> 
 
 	<!-- 统计 --> 

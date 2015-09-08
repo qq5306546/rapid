@@ -41,7 +41,7 @@
 	<select id="selectById" parameterType="java.lang.String" resultMap="PartyRelationshipMap">  
 			select <include refid="allColumns" />  
 			from  party_relationship 
-			where party_id_from = #partyIdFrom#  
+			where party_id_from = #{partyIdFrom}  
 	</select> 
 
 	<!-- 统计 --> 
@@ -59,7 +59,7 @@
 		)  
 		values  
 		(  
-			#partyIdFrom#,#partyIdTo#,#partyRelationshipTypeId#,#roleTypeIdFrom#,#roleTypeIdTo#,#fromDate#,#thruDate#,#createStamp#,#lastUpdateStamp# 
+			#{partyIdFrom},#{partyIdTo},#{partyRelationshipTypeId},#{roleTypeIdFrom},#{roleTypeIdTo},#{fromDate},#{thruDate},#{createStamp},#{lastUpdateStamp} 
 		)  
 	</insert> 
 
@@ -76,13 +76,13 @@
 			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
 			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
 		</set>  
-		where party_id_from = #partyIdFrom# 
+		where party_id_from = #{partyIdFrom}
 	</update> 
 
 	<!-- 通过主键删除对象 --> 
 	<delete id="deleteById" parameterType="java.lang.String"> 
 		delete from party_relationship 
-		where party_id_from = #partyIdFrom# 
+		where party_id_from = #{partyIdFrom}
 	</delete> 
 
 </mapper> 

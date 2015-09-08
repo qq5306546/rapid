@@ -37,7 +37,7 @@
 	<select id="selectById" parameterType="java.lang.String" resultMap="PartyGroupMap">  
 			select <include refid="allColumns" />  
 			from  party_group 
-			where party_id = #partyId#  
+			where party_id = #{partyId}  
 	</select> 
 
 	<!-- 统计 --> 
@@ -55,7 +55,7 @@
 		)  
 		values  
 		(  
-			#partyId#,#groupName#,#groupNameLocal#,#officeSiteName#,#comments#,#createStamp#,#lastUpdateStamp# 
+			#{partyId},#{groupName},#{groupNameLocal},#{officeSiteName},#{comments},#{createStamp},#{lastUpdateStamp} 
 		)  
 	</insert> 
 
@@ -70,13 +70,13 @@
 			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
 			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
 		</set>  
-		where party_id = #partyId# 
+		where party_id = #{partyId} 
 	</update> 
 
 	<!-- 通过主键删除对象 --> 
 	<delete id="deleteById" parameterType="java.lang.String"> 
 		delete from party_group 
-		where party_id = #partyId# 
+		where party_id = #{partyId} 
 	</delete> 
 
 </mapper> 
