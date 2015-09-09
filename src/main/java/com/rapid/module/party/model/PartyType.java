@@ -15,6 +15,7 @@ public class PartyType extends BaseModel {
     private String partyTypeId;		//当事人类型标识
     private String parentTypeId;		//上级类型标识
     private String hasTable;		//有库表
+    private String enable;			//启用 Y-是，N-否
     private String description;		//描述
     
 
@@ -48,7 +49,15 @@ public class PartyType extends BaseModel {
         return this.hasTable;
     }
 
-    public void setDescription(String description) {
+    public String getEnable() {
+		return enable;
+	}
+
+	public void setEnable(String enable) {
+		this.enable = enable;
+	}
+
+	public void setDescription(String description) {
         this.description = description;
     }
 
