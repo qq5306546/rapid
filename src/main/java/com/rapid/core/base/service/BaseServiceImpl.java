@@ -20,11 +20,11 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 	protected final Logger logger = Logger.getLogger(getClass());
 	
 	@Autowired(required=true)
-	private BaseDAO<T, ID> crudMapper;
+	private BaseDAO<T, ID> baseDAO;
 
 	public long selectCount() {
 		try {
-			return crudMapper.selectCount();
+			return baseDAO.selectCount();
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectCount]错误：%s", e.getMessage()), e);
 		}
@@ -32,7 +32,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public long selectCount(Map params) {
 		try {
-			return crudMapper.selectCount(params);
+			return baseDAO.selectCount(params);
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectCount]错误：%s", e.getMessage()), e);
 		}
@@ -40,7 +40,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public long selectCount(T model) {
 		try {
-			return crudMapper.selectCount(BeanUtil.beanToMap(model));
+			return baseDAO.selectCount(BeanUtil.beanToMap(model));
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectCount]错误：%s", e.getMessage()), e);
 		}
@@ -48,7 +48,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public List<T> select() {
 		try {
-			return crudMapper.select();
+			return baseDAO.select();
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.select]错误：%s", e.getMessage()), e);
 		}
@@ -56,7 +56,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public List<T> select(Map params) {
 		try {
-			return crudMapper.select(params);
+			return baseDAO.select(params);
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.select]错误：%s", e.getMessage()), e);
 		}
@@ -64,7 +64,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public List<T> select(T model) {
 		try {
-			return crudMapper.select(BeanUtil.beanToMap(model));
+			return baseDAO.select(BeanUtil.beanToMap(model));
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.select]错误：%s", e.getMessage()), e);
 		}
@@ -72,7 +72,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 	
 	public PageList<T> selectPage(PageBounds pageBounds) {
 		try {
-			return crudMapper.select(null, pageBounds);
+			return baseDAO.select(null, pageBounds);
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectPage]错误：%s", e.getMessage()), e);
 		}
@@ -80,7 +80,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 	
 	public PageList<T> selectPage(Map params, PageBounds pageBounds) {
 		try {
-			return crudMapper.select(params, pageBounds);
+			return baseDAO.select(params, pageBounds);
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectPage]错误：%s", e.getMessage()), e);
 		}
@@ -88,7 +88,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 	
 	public PageList<T> selectPage(T model, PageBounds pageBounds) {
 		try {
-			return crudMapper.select(BeanUtil.beanToMap(model), pageBounds);
+			return baseDAO.select(BeanUtil.beanToMap(model), pageBounds);
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectPage]错误：%s", e.getMessage()), e);
 		}
@@ -96,7 +96,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public T selectById(ID id) {
 		try {
-			return crudMapper.selectById(id);
+			return baseDAO.selectById(id);
 		} catch (Exception e) {
 			throw new BaseException(String.format("查询[BaseService.selectById]错误：%s", e.getMessage()), e);
 		}
@@ -104,7 +104,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public int delete() {
 		try {
-			return crudMapper.delete();
+			return baseDAO.delete();
 		} catch (Exception e) {
 			throw new BaseException(String.format("删除[BaseService.delete]错误：%s", e.getMessage()), e);
 		}
@@ -112,7 +112,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public int delete(Map params) {
 		try {
-			return crudMapper.delete(params);
+			return baseDAO.delete(params);
 		} catch (Exception e) {
 			throw new BaseException(String.format("删除[BaseService.delete]错误：%s", e.getMessage()), e);
 		}
@@ -120,7 +120,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public int delete(T model) {
 		try {
-			return crudMapper.delete(BeanUtil.beanToMap(model));
+			return baseDAO.delete(BeanUtil.beanToMap(model));
 		} catch (Exception e) {
 			throw new BaseException(String.format("删除[BaseService.delete]错误：%s", e.getMessage()), e);
 		}
@@ -128,7 +128,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public int deleteById(ID id) {
 		try {
-			return crudMapper.deleteById(id);
+			return baseDAO.deleteById(id);
 		} catch (Exception e) {
 			throw new BaseException(String.format("删除[BaseService.deleteById]错误：%s", e.getMessage()), e);
 		}
@@ -136,7 +136,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 	
 	public int insertSelective(T model) {
 		try {
-			return crudMapper.insertSelective(model);
+			return baseDAO.insertSelective(model);
 		} catch (Exception e) {
 			throw new BaseException(String.format("新增[BaseService.insertSelective]错误：%s", e.getMessage()), e);
 		}
@@ -144,7 +144,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public int insert(T model) {
 		try {
-			return crudMapper.insert(model);
+			return baseDAO.insert(model);
 		} catch (Exception e) {
 			throw new BaseException(String.format("新增[BaseService.insert]错误：%s", e.getMessage()), e);
 		}
@@ -152,7 +152,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
 
 	public int updateByIdSelective(T model) {
 		try {
-			return crudMapper.updateByIdSelective(model);
+			return baseDAO.updateByIdSelective(model);
 		} catch (Exception e) {
 			throw new BaseException(String.format("修改[BaseService.updateByIdSelective]错误：%s", e.getMessage()), e);
 		}
@@ -160,7 +160,7 @@ public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> imple
     
 	public int updateById(T model) {
 		try {
-			return crudMapper.updateById(model);
+			return baseDAO.updateById(model);
 		} catch (Exception e) {
 			throw new BaseException(String.format("修改[BaseService.updateById]错误：%s", e.getMessage()), e);
 		}
