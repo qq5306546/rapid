@@ -15,7 +15,7 @@
     
     <util:properties id="properties" location="classpath:conf/config.properties"/>
     
-    <bean id="systemGlobal" class="com.rapid.common.plugin.config.SystemGlobal">
+    <bean id="systemGlobal" class="com.rapid.core.plugin.config.SystemGlobal">
     	<property name="properties" ref="properties" />
     </bean>
     

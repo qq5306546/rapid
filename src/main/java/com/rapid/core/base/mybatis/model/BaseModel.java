@@ -26,5 +26,13 @@ public class BaseModel implements Serializable {
 		this.lastUpdateStamp = lastUpdateStamp;
 	}
 	
+	/**
+	 * 设置创建时间、最后修改时间为当前时间
+	 */
+	public void setNowTime() {
+		Date now = new Date();
+		setCreateStamp(now);
+		setLastUpdateStamp(now);
+	}
 	
 }

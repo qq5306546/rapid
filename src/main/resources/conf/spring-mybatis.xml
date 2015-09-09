@@ -34,14 +34,8 @@
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
         <property name="dataSource" ref="dataSource" />
-<<<<<<< HEAD
-        <property name="configLocation" value="classpath:conf/mybatis-config.xml" /> 
-        <property name="mapperLocations" value="classpath*:com/rapid/module/**/dao/mapper/*.xml" /> 
-=======
         <property name="configLocation" value="classpath:conf/mybatis-config.xml"></property> 
-        com.rapid.module
-        <property name="mapperLocations" value="classpath*:com/rapid/module/**/dao/Mapper/*.xml"></property> 
->>>>>>> refs/heads/party
+        <property name="mapperLocations" value="classpath*:mapper/**/*.xml"></property> 
         <property name="plugins">
             <list>
                 <bean class="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
@@ -54,7 +48,11 @@
     <!-- 扫描指定包下的所有mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	  	<property name="basePackage" value="com.rapid.module" />
+<<<<<<< HEAD
 	  	<property name="annotationClass" value="com.rapid.common.base.mybatis.annotation.MyBatisDAO"/>
+=======
+	  	<property name="annotationClass" value="com.rapid.core.base.mybatis.annotation.MyBatisDAO"/>
+>>>>>>> refs/heads/party
 	</bean>
  
    	<!-- 对数据源进行事务管理 -->
