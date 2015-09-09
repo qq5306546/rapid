@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rapid.core.base.controller.BaseController;
-import com.rapid.module.party.model.Party;
 import com.rapid.module.party.model.PartyGroup;
 import com.rapid.module.party.service.PartyService;
 

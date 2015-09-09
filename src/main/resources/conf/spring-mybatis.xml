@@ -48,7 +48,15 @@
     <!-- 扫描指定包下的所有mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	  	<property name="basePackage" value="com.rapid.module" />
+<<<<<<< HEAD
 	  	<property name="annotationClass" value="com.rapid.core.base.mybatis.annotation.MyBatisDAO"/>
+=======
+<<<<<<< HEAD
+	  	<property name="annotationClass" value="com.rapid.common.base.mybatis.annotation.MyBatisDAO"/>
+=======
+	  	<property name="annotationClass" value="com.rapid.core.base.mybatis.annotation.MyBatisDAO"/>
+>>>>>>> refs/heads/party
+>>>>>>> refs/heads/master
 	</bean>
  
    	<!-- 对数据源进行事务管理 -->
