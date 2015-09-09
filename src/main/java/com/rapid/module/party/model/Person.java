@@ -2,6 +2,11 @@ package com.rapid.module.party.model;
 
 import java.util.Date;
 
+/**
+ * 当事人-人员
+ * @author wubei
+ *
+ */
 @SuppressWarnings("serial")
 public class Person extends Party {
 

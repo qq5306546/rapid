@@ -1,6 +1,10 @@
 package com.rapid.module.party.model;
 
-
+/**
+ * 当事人-组织
+ * @author wubei
+ *
+ */
 @SuppressWarnings("serial")
 public class PartyGroup extends Party {
 

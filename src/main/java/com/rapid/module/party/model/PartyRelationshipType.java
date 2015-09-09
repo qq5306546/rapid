@@ -1,6 +1,12 @@
 package com.rapid.module.party.model;
 
 import com.rapid.core.base.mybatis.model.BaseModel;
+
+/**
+ * 当事人关系类型
+ * @author wubei
+ *
+ */
 @SuppressWarnings("serial")
 public class PartyRelationshipType extends BaseModel {
 

@@ -4,6 +4,11 @@ import java.util.Date;
 
 import com.rapid.core.base.mybatis.model.BaseModel;
 
+/**
+ * 当事人
+ * @author wubei
+ *
+ */
 @SuppressWarnings("serial")
 public class Party extends BaseModel {
 
