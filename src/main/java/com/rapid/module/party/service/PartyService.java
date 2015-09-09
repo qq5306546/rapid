@@ -1,6 +1,5 @@
 package com.rapid.module.party.service;
 
-import com.rapid.core.base.service.BaseService;
 import com.rapid.module.party.model.Party;
 
 /**
@@ -8,13 +7,15 @@ import com.rapid.module.party.model.Party;
  * @author wubei
  *
  */
-public interface PartyService extends BaseService<Party, String> {
+public interface PartyService {
 
 	/**
-	 * 创建一个当事人
+	 * 创建一个当事人对象<br>
+	 * Party对象可以是Person或PartyGroup子类<br>
 	 * @param 
-	 * 		party
+	 * 		party 对象
 	 * @return
+	 * 		int 大于0则成功
 	 */
-	public int createParty(Party party);
+	int createParty(Party party);
 }

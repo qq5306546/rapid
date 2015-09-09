@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rapid.core.base.controller.BaseController;
-import com.rapid.core.plugin.config.SystemGlobal;
+import com.rapid.module.party.model.Party;
+import com.rapid.module.party.model.PartyGroup;
+import com.rapid.module.party.service.PartyService;
 
 @Controller
 @RequestMapping("/party")
 public class IndexController extends BaseController {
 	
 	@Autowired
-	private SystemGlobal systemGlobal;
+	private PartyService partyService;
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {
@@ -37,6 +39,11 @@ public class IndexController extends BaseController {
 	@RequestMapping("/test")
 	@ResponseBody
 	public Object test() {
+		PartyGroup pg = new PartyGroup();
+		pg.setPartyId("1");
+		pg.setPartyTypeId("FAMILY");
+		
+		partyService.createParty(pg);
 		return renderJsonSucc();
 	}
 	

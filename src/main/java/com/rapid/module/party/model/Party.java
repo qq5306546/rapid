@@ -12,8 +12,7 @@ public class Party extends BaseModel {
     private String partyId;		//当事人标识
     private String partyTypeId;		//当事人类型
     private Date createStamp;		//创建时间
-    private Date lastUpdateStamp;		//最后修改时间
-    private String createByUserLogin;		//创建当事人登录账号
+    private String createByUserLogin; //创建当事人登录账号
     
     
 
@@ -47,20 +46,12 @@ public class Party extends BaseModel {
         return this.createStamp;
     }
 
-    public void setLastUpdateStamp(Date lastUpdateStamp) {
-        this.lastUpdateStamp = lastUpdateStamp;
-    }
+	public String getCreateByUserLogin() {
+		return createByUserLogin;
+	}
 
-    public Date getLastUpdateStamp() {
-        return this.lastUpdateStamp;
-    }
-
-    public void setCreateByUserLogin(String createByUserLogin) {
-        this.createByUserLogin = createByUserLogin;
-    }
-
-    public String getCreateByUserLogin() {
-        return this.createByUserLogin;
-    }
+	public void setCreateByUserLogin(String createByUserLogin) {
+		this.createByUserLogin = createByUserLogin;
+	}
 
 }

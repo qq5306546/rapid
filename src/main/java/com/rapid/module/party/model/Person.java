@@ -2,14 +2,11 @@ package com.rapid.module.party.model;
 
 import java.util.Date;
 
-import com.rapid.core.base.mybatis.model.BaseModel;
-
 @SuppressWarnings("serial")
-public class Person extends BaseModel {
+public class Person extends Party {
 
     // Fields
 
-    private String partyId;		//当事人唯一标识
     private String realname;		//真实姓名
     private String nickname;		//昵称
     private String gender;		//性别
@@ -23,14 +20,6 @@ public class Person extends BaseModel {
     }
 
     
-
-    public void setPartyId(String partyId) {
-        this.partyId = partyId;
-    }
-
-    public String getPartyId() {
-        return this.partyId;
-    }
 
     public void setRealname(String realname) {
         this.realname = realname;
