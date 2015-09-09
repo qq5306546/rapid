@@ -12,14 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rapid.core.base.controller.BaseController;
-import com.rapid.core.plugin.config.SystemGlobal;
 
 @Controller
 @RequestMapping("/party")
 public class IndexController extends BaseController {
 	
-	@Autowired
-	private SystemGlobal systemGlobal;
 	
 	@RequestMapping("/index")
 	public ModelAndView index() {
