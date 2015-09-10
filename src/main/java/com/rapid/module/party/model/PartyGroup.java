@@ -1,5 +1,8 @@
 package com.rapid.module.party.model;
 
+import com.validmodel.annotation.ValidateAnnotation.Length;
+import com.validmodel.annotation.ValidateAnnotation.NotEmpty;
+
 /**
  * 当事人-组织
  * @author wubei
@@ -10,6 +13,8 @@ public class PartyGroup extends Party {
 
     // Fields
 
+	@NotEmpty
+	@Length(min = 5, max = 100)
     private String groupName;		//组织名称
     private String groupNameLocal;		//组织英文名称
     private String officeSiteName;		//办公地点

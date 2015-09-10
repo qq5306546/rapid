@@ -1,6 +1,9 @@
 package com.rapid.module.party.model;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.rapid.core.base.mybatis.model.BaseModel;
+import com.rapid.module.common.Status;
 
 /**
  * 角色类型
@@ -13,7 +16,7 @@ public class RoleType extends BaseModel {
     // Fields
 
     private String roleTypeId;		//角色类型唯一标识
-    private String parentTypeId;		
+    private String parentTypeId;	//上级角色标识
     private String hasTable;		//有库表
     private String description;		//描述
     
@@ -45,6 +48,9 @@ public class RoleType extends BaseModel {
     }
 
     public String getHasTable() {
+    	if (StringUtils.isBlank(this.hasTable)) {
+    		return Status.STATUS_N;
+    	}
         return this.hasTable;
     }
 

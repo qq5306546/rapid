@@ -35,7 +35,7 @@
 	<select id="selectById" parameterType="java.lang.String" resultMap="RoleTypeMap">  
 			select <include refid="allColumns" />  
 			from  role_type 
-			where role_type_id = #roleTypeId#  
+			where role_type_id = #{roleTypeId}  
 	</select> 
 
 	<!-- 统计 --> 
@@ -53,7 +53,7 @@
 		)  
 		values  
 		(  
-			#roleTypeId#,#parentTypeId#,#hasTable#,#description#,#createStamp#,#lastUpdateStamp# 
+			#{roleTypeId},#{parentTypeId},#{hasTable},#{description},#{createStamp},#{lastUpdateStamp} 
 		)  
 	</insert> 
 
@@ -67,13 +67,13 @@
 			<if test="createStamp != null" >create_stamp = #{createStamp},</if> 
 			<if test="lastUpdateStamp != null" >last_update_stamp = #{lastUpdateStamp},</if> 
 		</set>  
-		where role_type_id = #roleTypeId# 
+		where role_type_id = #{roleTypeId} 
 	</update> 
 
 	<!-- 通过主键删除对象 --> 
 	<delete id="deleteById" parameterType="java.lang.String"> 
 		delete from role_type 
-		where role_type_id = #roleTypeId# 
+		where role_type_id = #{roleTypeId} 
 	</delete> 
 
 </mapper> 

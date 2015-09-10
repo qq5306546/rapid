@@ -39,8 +39,8 @@ public class IndexController extends BaseController {
 	@ResponseBody
 	public Object test() {
 		PartyGroup pg = new PartyGroup();
-		pg.setPartyId("1");
-		pg.setPartyTypeId("FAMILY");
+		pg.setPartyId("2");
+		pg.setPartyTypeId("TEAM");
 		
 		partyService.createParty(pg);
 		return renderJsonSucc();

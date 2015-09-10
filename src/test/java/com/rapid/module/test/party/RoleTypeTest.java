@@ -6,22 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.rapid.module.party.model.PartyGroup;
-import com.rapid.module.party.service.PartyService;
+import com.rapid.module.party.model.RoleType;
+import com.rapid.module.party.service.RoleTypeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:conf/spring.xml", "classpath:conf/spring-mybatis.xml"})
-public class PartyTest {
+public class RoleTypeTest {
 	
 	@Autowired
-	private PartyService partyService;
+	private RoleTypeService roleTypeService;
 
 	@Test
-	public void createParty() {
-		PartyGroup pg = new PartyGroup();
-		pg.setPartyId("3333");
-		pg.setGroupName("测试");
-		pg.setPartyTypeId("1");
-		partyService.createParty(pg);
+	public void createRoleType() {
+		RoleType roleType = new RoleType();
+		roleType.setRoleTypeId("2222");
+		roleType.setParentTypeId("1111");
+		roleType.setNowTime();
 	}
 }
