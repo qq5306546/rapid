@@ -8,8 +8,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.rapid.core.base.mybatis.model.BaseModel;
 /**
  * mybatis 泛型基类
- * 所有实现BaseMapper的对象，必须在mybatis对象xml中实现BaseMapper所有方法，
- * 该方法可以通过mybatis的生成工具mybatis-generator自动生成
+ * 所有实现BaseDao的对象，必须在mybatis对象xml中实现BaseDAO所有方法
  * @author wubei
  *
  * @param <T> 泛型对象

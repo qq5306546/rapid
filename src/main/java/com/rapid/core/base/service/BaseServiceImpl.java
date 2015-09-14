@@ -15,7 +15,7 @@ import com.rapid.core.exception.BaseException;
 import com.rapid.core.utils.BeanUtil;
 
 @SuppressWarnings("rawtypes")
-public class BaseServiceImpl<T extends BaseModel, ID extends Serializable> implements BaseService<T, ID> {
+public abstract class BaseServiceImpl<T extends BaseModel, ID extends Serializable> implements BaseService<T, ID> {
 	
 	protected final Logger logger = Logger.getLogger(getClass());
 	

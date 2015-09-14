@@ -38,11 +38,13 @@ public class IndexController extends BaseController {
 	@RequestMapping("/test")
 	@ResponseBody
 	public Object test() {
-		PartyGroup pg = new PartyGroup();
-		pg.setPartyId("2");
-		pg.setPartyTypeId("TEAM");
+//		PartyGroup pg = new PartyGroup();
+//		pg.setPartyId("2");
+//		pg.setPartyTypeId("TEAM");
+//		
+//		partyService.createParty(pg);
 		
-		partyService.createParty(pg);
+		partyService.select();
 		return renderJsonSucc();
 	}
 	

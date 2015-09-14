@@ -1,12 +1,15 @@
 package com.rapid.module.party.service;
 
+import com.rapid.core.base.service.BaseService;
+import com.rapid.module.party.model.PartyType;
+
 
 /**
  * 当事人类型Service
  * @author wubei
  *
  */
-public interface PartyTypeService {
+public interface PartyTypeService extends BaseService<PartyType, String> {
 
 	/**
 	 * 通过当事人类型子节点标识查找父节点<br>
