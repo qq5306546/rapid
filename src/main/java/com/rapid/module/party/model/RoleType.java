@@ -3,7 +3,6 @@ package com.rapid.module.party.model;
 import org.apache.commons.lang.StringUtils;
 
 import com.rapid.core.base.mybatis.model.BaseModel;
-import com.rapid.module.common.Status;
 
 /**
  * 角色类型
@@ -49,7 +48,7 @@ public class RoleType extends BaseModel {
 
     public String getHasTable() {
     	if (StringUtils.isBlank(this.hasTable)) {
-    		return Status.STATUS_N;
+    		return "N";
     	}
         return this.hasTable;
     }
